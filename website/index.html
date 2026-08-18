@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="isv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slovosbor Serif — Type Specimen & OpenType Playground</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <div class="specimen-app">
+    <!-- Header -->
+    <header class="specimen-header">
+      <div class="brand">
+        <h1>Slovosbor Serif</h1>
+        <p class="subtitle">Interactive Type Specimen & OpenType Feature Explorer</p>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+          Commissioned & funded by <a href="https://github.com/noomorph" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Yaroslav Serhieiev</a>, designed by <a href="https://www.fiverr.com/sergevictor" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">S.-V. Sofienczuk-Wojczyszyn</a> (based on IBM Plex Serif by <a href="https://www.boldmonday.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Bold Monday</a>).
+        </p>
+      </div>
+      <div class="version-tag">Variable wght 100–700</div>
+    </header>
+
+    <!-- Interactive Controls Bar -->
+    <section class="control-deck">
+      <div class="control-row">
+        <!-- Font weight slider -->
+        <div class="control-group">
+          <label for="weight-slider">Weight: <span id="weight-val">400</span></label>
+          <input type="range" id="weight-slider" min="100" max="700" value="400" step="10">
+        </div>
+
+        <!-- Font size slider -->
+        <div class="control-group">
+          <label for="size-slider">Size: <span id="size-val">32px</span></label>
+          <input type="range" id="size-slider" min="14" max="96" value="32" step="1">
+        </div>
+
+        <!-- Line height slider -->
+        <div class="control-group">
+          <label for="leading-slider">Line Height: <span id="leading-val">1.4</span></label>
+          <input type="range" id="leading-slider" min="1.0" max="2.2" value="1.4" step="0.05">
+        </div>
+
+        <!-- Letter spacing -->
+        <div class="control-group">
+          <label for="tracking-slider">Tracking: <span id="tracking-val">0em</span></label>
+          <input type="range" id="tracking-slider" min="-0.05" max="0.15" value="0" step="0.01">
+        </div>
+      </div>
+
+      <div class="toggles-row">
+        <!-- Italic toggle -->
+        <label class="toggle-btn">
+          <input type="checkbox" id="toggle-italic">
+          <span class="btn-face">Italic</span>
+        </label>
+
+        <span class="divider"></span>
+
+        <!-- OpenType Feature Toggles -->
+        <label class="toggle-btn" title="calt: All-caps Yat ascender elevation">
+          <input type="checkbox" id="feat-calt" checked>
+          <span class="btn-face">calt (Caps Yat)</span>
+        </label>
+
+        <label class="toggle-btn" title="ss10: Handwritten Yus letterforms">
+          <input type="checkbox" id="feat-ss10">
+          <span class="btn-face">ss10 (Handwritten Yus)</span>
+        </label>
+
+        <label class="toggle-btn" title="ss09: Alternate Cyrillic letterforms">
+          <input type="checkbox" id="feat-ss09">
+          <span class="btn-face">ss09 (Alt Cyrillic)</span>
+        </label>
+
+        <label class="toggle-btn" title="ss07: Alternate У and accented forms">
+          <input type="checkbox" id="feat-ss07">
+          <span class="btn-face">ss07 (Alt У)</span>
+        </label>
+
+        <label class="toggle-btn" title="salt: Stylistic alternates">
+          <input type="checkbox" id="feat-salt">
+          <span class="btn-face">salt (Stylistic Alt)</span>
+        </label>
+
+        <span class="divider"></span>
+
+        <!-- Language / locl selector -->
+        <div class="lang-picker">
+          <label for="lang-select">Language (locl):</label>
+          <select id="lang-select">
+            <option value="isv" selected>Interslavic (isv)</option>
+            <option value="bg">Bulgarian (bg - loclBGR)</option>
+            <option value="sr">Serbian (sr - loclSRB)</option>
+            <option value="mk">Macedonian (mk - loclMKD)</option>
+            <option value="uk">Ukrainian (uk)</option>
+            <option value="be">Belarusian (be)</option>
+            <option value="ru">Russian (ru)</option>
+            <option value="pl">Polish (pl)</option>
+            <option value="cs">Czech (cs)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preset Texts Selector -->
+    <div class="presets-bar">
+      <span class="presets-title">Text Presets:</span>
+      <button class="preset-chip active" data-text="isv-std">Interslavic (Standard)</button>
+      <button class="preset-chip" data-text="isv-etym">Interslavic (Etymological)</button>
+      <button class="preset-chip" data-text="yat-test">Yat in Caps & Text</button>
+      <button class="preset-chip" data-text="yus-test">Yus & Accents</button>
+      <button class="preset-chip" data-text="locl-bg">Bulgarian</button>
+      <button class="preset-chip" data-text="locl-sr">Serbian</button>
+      <button class="preset-chip" data-text="locl-mk">Macedonian</button>
+      <button class="preset-chip" data-text="locl-uk">Ukrainian</button>
+      <button class="preset-chip" data-text="locl-be">Belarusian</button>
+      <button class="preset-chip" data-text="locl-ru">Русскій</button>
+      <button class="preset-chip" data-text="locl-pl">Polish</button>
+      <button class="preset-chip" data-text="locl-cs">Czech & Slovak</button>
+    </div>
+
+    <!-- Main Editable Specimen Canvas -->
+    <main class="specimen-canvas-wrap">
+      <div id="specimen-text" class="specimen-canvas" contenteditable="true" spellcheck="false">
+Každa ščestliva ryba fugu uměje graciozno padati v hladnu vodu.
+Чи јест ли грєх мыслити, же западне цифры сут бољ, воњ и шок?
+      </div>
+    </main>
+
+    <!-- Glyph Map & Feature Showcase Grid -->
+    <section class="features-showcase">
+      <h2>OpenType Special Characters & Behavior Showcase</h2>
+      <div class="cards-grid">
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <h3>Yat (<code>ѣ</code> / <code>Ѣ</code>) in All-Caps</h3>
+            <span class="tag">calt</span>
+          </div>
+          <div class="card-demo font-target" style="font-size: 26px;">
+            <div>СѢЮ СВѢТЪ ВѢРА</div>
+            <div style="color: #64748b; font-size: 18px; margin-top: 4px;">Normal: сѣю свѣтъ вѣра</div>
+          </div>
+          <p class="feature-desc">In capital words, Yat's crossbar automatically sits on the cap-line while the vertical stem extends into ascenders.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <h3>Handwritten Yus Forms</h3>
+            <span class="tag">ss10</span>
+          </div>
+          <div class="card-demo font-target" style="font-size: 26px; font-feature-settings: 'ss10' 1;">
+            <div>ѫ ѭ ѧ ѩ ѫ́ ѧ́ ѭ́ ѩ́</div>
+            <div style="color: #64748b; font-size: 18px; margin-top: 4px; font-feature-settings: 'ss10' 0;">Default: ѫ ѭ ѧ ѩ ѫ́ ѧ́ ѭ́ ѩ́</div>
+          </div>
+          <p class="feature-desc">Activates calligraphic historical handwritten Yus forms for early Slavic and philological texts.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <h3>Bulgarian Cyrillic Localization</h3>
+            <span class="tag">locl (bg)</span>
+          </div>
+          <div class="card-demo font-target" lang="bg" style="font-size: 24px;">
+            <div>в г д ж з и й к л п т ц ш щ ю ѣ</div>
+          </div>
+          <p class="feature-desc">13+ authentic Bulgarian letterforms activated automatically with <code>:lang(bg)</code>.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <h3>Serbian Italic Variations</h3>
+            <span class="tag">locl (sr/mk)</span>
+          </div>
+          <div class="card-demo font-target" lang="sr" style="font-style: italic; font-size: 26px;">
+            <div>г д п т (Serbian italic)</div>
+          </div>
+          <p class="feature-desc">Roman upright remains unified pan-Slavic; italic engages regional Serbian variants.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSS Code Generator snippet -->
+    <footer class="specimen-footer">
+      <div class="footer-title">Generated CSS for Current Settings:</div>
+      <pre id="css-snippet" class="css-output"></pre>
+    </footer>
+  </div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>

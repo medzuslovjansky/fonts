@@ -1,0 +1,19 @@
+/* slovosbor-serif-cyrillic-variable-wght-normal */
+@font-face {
+  font-family: 'Slovosbor Serif';
+  font-style: normal;
+  font-display: var(--fontsource-display, swap);
+  font-weight: 100 700;
+  src: url('./files/slovosbor-serif-cyrillic-variable-wght-normal.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0462-046D, U+0472-0475, U+0490-04C2, U+04CF-04D9, U+04DC-04E9, U+04EE-04F9, U+0524-0525, U+02BB-02BC, U+02C7, U+02D8-02D9, U+02DB, U+02DD, U+0300-0304, U+0306-030C, U+0312, U+0315, U+031B, U+0323, U+0326-0328, U+032D-032E, U+0331;
+}
+
+/* slovosbor-serif-cyrillic-variable-wght-italic */
+@font-face {
+  font-family: 'Slovosbor Serif';
+  font-style: italic;
+  font-display: var(--fontsource-display, swap);
+  font-weight: 100 700;
+  src: url('./files/slovosbor-serif-cyrillic-variable-wght-italic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0462-046D, U+0472-0475, U+0490-04C2, U+04CF-04D9, U+04DC-04E9, U+04EE-04F9, U+0524-0525, U+02BB-02BC, U+02C7, U+02D8-02D9, U+02DB, U+02DD, U+0300-0304, U+0306-030C, U+0312, U+0315, U+031B, U+0323, U+0326-0328, U+032D-032E, U+0331;
+}

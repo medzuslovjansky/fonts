@@ -1,0 +1,19 @@
+/* slovosbor-serif-greek-variable-wght-normal */
+@font-face {
+  font-family: 'Slovosbor Serif';
+  font-style: normal;
+  font-display: var(--fontsource-display, swap);
+  font-weight: 100 700;
+  src: url('./files/slovosbor-serif-greek-variable-wght-normal.woff2') format('woff2');
+  unicode-range: U+037E, U+0384-0385, U+0386-038A, U+038C, U+038E-03A1, U+03A3-03CE, U+03D0-03D1, U+03D5;
+}
+
+/* slovosbor-serif-greek-variable-wght-italic */
+@font-face {
+  font-family: 'Slovosbor Serif';
+  font-style: italic;
+  font-display: var(--fontsource-display, swap);
+  font-weight: 100 700;
+  src: url('./files/slovosbor-serif-greek-variable-wght-italic.woff2') format('woff2');
+  unicode-range: U+037E, U+0384-0385, U+0386-038A, U+038C, U+038E-03A1, U+03A3-03CE, U+03D0-03D1, U+03D5;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@interslavic/fonts-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "verify": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@interslavic/slovosbor-serif": "workspace:^"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vite": "^6.2.0"
+  }
+}

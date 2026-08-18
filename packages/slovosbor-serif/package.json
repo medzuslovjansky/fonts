@@ -1,0 +1,60 @@
+{
+  "name": "@interslavic/slovosbor-serif",
+  "version": "1.0.0",
+  "description": "Slovosbor Serif variable webfont with advanced Cyrillic, Interslavic and Old Church Slavonic OpenType typography support",
+  "main": "index.css",
+  "style": "index.css",
+  "exports": {
+    ".": "./index.css",
+    "./index.css": "./index.css",
+    "./variable.css": "./variable.css",
+    "./cyrillic.css": "./cyrillic.css",
+    "./latin.css": "./latin.css",
+    "./greek.css": "./greek.css",
+    "./pi.css": "./pi.css",
+    "./slovosbor-serif-variable.css": "./slovosbor-serif-variable.css",
+    "./package.json": "./package.json",
+    "./files/*": "./files/*",
+    "./raw/*": "./raw/*"
+  },
+  "files": [
+    "*.css",
+    "files",
+    "raw",
+    "license.txt",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "./build.sh",
+    "verify": "python3 scripts/verify_slovosbor.py raw/SlovosborSerif-VF.ttf raw/SlovosborSerif-Italic-VF.ttf"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medzuslovjansky/fonts.git",
+    "directory": "packages/slovosbor-serif"
+  },
+  "keywords": [
+    "font",
+    "fontsource",
+    "typography",
+    "variable-font",
+    "interslavic",
+    "cyrillic",
+    "church-slavonic",
+    "yat",
+    "yus",
+    "opentype",
+    "slovosbor"
+  ],
+  "author": "Yaroslav Serhieiev <noomorph@gmail.com>",
+  "contributors": [
+    "S.-V. Sofienczuk-Wojczyszyn <https://www.fiverr.com/sergevictor>",
+    "Mike Abbink",
+    "Paul van der Laan <https://www.boldmonday.com/>",
+    "Pieter van Rosmalen <https://www.boldmonday.com/>"
+  ],
+  "license": "OFL-1.1",
+  "publishConfig": {
+    "access": "public"
+  }
+}
