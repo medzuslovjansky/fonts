@@ -1,0 +1,46 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write  # Required for npm OIDC Trusted Publishing
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install HarfBuzz CLI & Python tools
+        run: |
+          sudo apt-get install -y --no-install-recommends libharfbuzz-bin || (sudo apt-get update && sudo apt-get install -y libharfbuzz-bin)
+          pip install --no-cache-dir fonttools brotli
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          yarn install --immutable
+
+      - name: Verify fonts
+        run: yarn verify
+
+      - name: Publish changed / new versions to npm via OIDC
+        run: |
+          npm_config_provenance=true npm_config_access=public yarn workspaces foreach --all --no-private npm publish --tolerate-republish
