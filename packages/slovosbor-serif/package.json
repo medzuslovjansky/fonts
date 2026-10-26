@@ -1,6 +1,6 @@
 {
   "name": "@interslavic/slovosbor-serif",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Slovosbor Serif variable webfont with advanced Cyrillic, Interslavic and Old Church Slavonic OpenType typography support",
   "main": "index.css",
   "style": "index.css",
