@@ -349,6 +349,7 @@ def rebrand(font, italic, log):
     set_name(font, 8,  DESIGNER)
     set_name(font, 9,  f"{DESIGNER}; Mike Abbink, Paul van der Laan, Pieter van Rosmalen")
     set_name(font, 10, f"Extensively revised by {DESIGNER}")
+    set_name(font, 12, "https://interslavic.fun/fonts/")
     font["name"].removeNames(7)          # чужой товарный знак
     # PostScript-имена именованных экземпляров тоже несут «Plex» (RFN)
     for inst in font["fvar"].instances:
