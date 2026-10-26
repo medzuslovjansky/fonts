@@ -348,8 +348,14 @@ def rebrand(font, italic, log):
                        f"Modifications copyright 2026 {DESIGNER}.")
     set_name(font, 8,  DESIGNER)
     set_name(font, 9,  f"{DESIGNER}; Mike Abbink, Paul van der Laan, Pieter van Rosmalen")
-    set_name(font, 10, "Extensively revised derivative of IBM Plex Serif by Bold Monday.")
+    set_name(font, 10, f"Extensively revised by {DESIGNER}")
     font["name"].removeNames(7)          # чужой товарный знак
+    # PostScript-имена именованных экземпляров тоже несут «Plex» (RFN)
+    for inst in font["fvar"].instances:
+        nid = inst.postscriptNameID
+        if nid != 0xFFFF:
+            old = font["name"].getDebugName(nid)
+            set_name(font, nid, f"{PSFAMILY}-{old.split('-', 1)[1]}")
     font["OS/2"].achVendID = VENDOR
     font["head"].fontRevision = REVISION
     log.append(f"имя семейства → {FAMILY} {style}; name[7] удалён; vendor → {VENDOR}")
