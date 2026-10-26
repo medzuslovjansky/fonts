@@ -15,7 +15,9 @@ from anchor_var import measure_drift, apply_x_variation, optical_x
 
 # гласные, которым нужен якорь для ударения
 TARGET_CPS = [0x044D, 0x044E, 0x044F, 0x0454, 0x0463, 0x046B, 0x0467, 0x0469, 0x046D,
-              0x042D, 0x042E, 0x042F, 0x0404, 0x0462, 0x046A]
+              0x042D, 0x042E, 0x042F, 0x0404, 0x0462, 0x046A,
+              # ъ — гласная в болгарском (задъ̀хам), ь и прописные — заодно
+              0x044A, 0x044C, 0x042A, 0x042C]
 
 # позиции, выправленные заказчиком по оттиску (X в юнитах шрифта)
 OVERRIDE_X = {
@@ -23,12 +25,14 @@ OVERRIDE_X = {
     False: {0x0463: 360, 0x0469: 531, 0x046D: 716, 0x042F: 404, 0x0467: 282,
             0x044F: 324, 0x0454: 334},
     True:  {0x0463: 419, 0x046B: 450, 0x0467: 369, 0x0469: 520,
-            0x046D: 687, 0x042F: 453},
+            0x046D: 687, 0x042F: 453,
+            # круг 6: курсивный ъ — гравис целит в ложбинку между флажком и мачтой
+            0x044A: 253},
 }
 
 # Y переносится от донора, но у прямого ятя акут опущен вручную:
 # он теперь стоит справа от палочки, а не над ней
-OVERRIDE_Y = {False: {0x0463: 590}, True: {0x0463: 590}}
+OVERRIDE_Y = {False: {0x0463: 590}, True: {0x0463: 590, 0x044A: 540}}
 
 # у є оптический центр верха уползает влево с набором веса, а глазу нужно
 # наоборот — держим X постоянным по всему весу
@@ -37,7 +41,9 @@ OVERRIDE_Y = {False: {0x0463: 590}, True: {0x0463: 590}}
 # держался 38 юнитов от Thin до Bold. Раздельно по начертаниям.
 DRIFT_OVERRIDE = {
     False: {0x0454: (0, 0), 0x0463: (81, -49)},
-    True:  {0x0454: (0, 0), 0x0463: (73, -69)},
+    True:  {0x0454: (0, 0), 0x0463: (73, -69),
+            # ложбинка у ъ: 336 / 320 / 320 при Thin / Regular / Bold
+            0x044A: (0, 16)},
 }
 
 # У болгарского ю верхние 12% краски — это высокая левая палка, поэтому
@@ -96,6 +102,7 @@ def add_missing_anchors(font, log, italic=False, src_path=None):
 
     cmap = font.getBestCmap()
     gs = font.getGlyphSet()
+    angle = font["post"].italicAngle
     gid = {n: i for i, n in enumerate(font.getGlyphOrder())}
     have = list(st.BaseCoverage.glyphs)
     have_set = set(have)
@@ -119,7 +126,7 @@ def add_missing_anchors(font, log, italic=False, src_path=None):
         dn, da, db = min(donors, key=lambda d: (abs(d[2][3] - tb[3]),
                                                 abs((d[2][2] - d[2][0]) - (tb[2] - tb[0]))))
         anchor = copy.deepcopy(da)
-        ox = optical_x(gs, name, cp)
+        ox = optical_x(gs, name, cp, angle)
         anchor.XCoordinate = int(round(
             ox if ox is not None
             else da.XCoordinate + ((tb[0] + tb[2]) / 2 - (db[0] + db[2]) / 2)))
@@ -149,7 +156,7 @@ def add_missing_anchors(font, log, italic=False, src_path=None):
         if banchor is None:          # база в покрытии, но якорь не задан
             continue
         cp = rule_cp.get(base)
-        ax, bx = optical_x(gs, alt, cp), optical_x(gs, base, cp)
+        ax, bx = optical_x(gs, alt, cp, angle), optical_x(gs, base, cp, angle)
         anchor = copy.deepcopy(banchor)
         # сохраняем выверенное положение базы, добавляя разницу форм
         if ax is not None and bx is not None:
