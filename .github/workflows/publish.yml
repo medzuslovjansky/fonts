@@ -43,4 +43,4 @@ jobs:
 
       - name: Publish changed / new versions to npm via OIDC
         run: |
-          npm_config_provenance=true npm_config_access=public yarn workspaces foreach --all --no-private npm publish --tolerate-republish
+          yarn workspaces foreach --all --no-private npm publish --tolerate-republish --provenance --access public
